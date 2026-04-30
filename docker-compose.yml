@@ -1,0 +1,27 @@
+services:                                                                                                                                                                                                       
+    pacientes-service:                                      
+      build: ./pacientes-service
+      ports:
+        - "3001:3001"
+      environment:
+        - PORT=3001
+        - DB_HOST=pacientes-db                                                                                                                                                                                    
+        - DB_PORT=5432
+        - DB_NAME=pacientes_db                                                                                                                                                                                    
+        - DB_USER=postgres                                  
+        - DB_PASSWORD=postgres
+      depends_on:                                                                                                                                                                                                 
+        - pacientes-db
+                                                                                                                                                                                                                  
+    pacientes-db:                                           
+      image: postgres:15-alpine
+      environment:
+        - POSTGRES_DB=pacientes_db
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+      volumes:                                                                                                                                                                                                    
+        - pacientes_data:/var/lib/postgresql/data
+        - ./pacientes-service/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+                                                                                                                                                                                                                  
+volumes:                                                  
+    pacientes_data:

@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS pacientes (
+  id SERIAL PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  especie VARCHAR(50) NOT NULL,
+  raza VARCHAR(50),
+  edad INTEGER,
+  dueno_nombre VARCHAR(100),
+  dueno_telefono VARCHAR(20),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
