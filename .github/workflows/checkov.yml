@@ -18,4 +18,5 @@ jobs:
           with:                                                                                                                                                                                                   
             directory: .
             framework: dockerfile,yaml                                                                                                                                                                  
-            soft_fail: true                                 
+            soft_fail: true
+            output_format: cli                                 
