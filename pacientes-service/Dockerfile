@@ -4,5 +4,8 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+USER appuser
 EXPOSE 3001
+HEALTHCHECK --interval=30s --timeout=3s CMD wget -qO- http://localhost:3001/health || exit 1
 CMD ["node", "src/index.js"]
